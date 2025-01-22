@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>He Zhu Homepage</title>
+    <meta name="author" content="He Zhu">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="images/favicon/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <style>
+      #loading {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        /* background-color: #2c3e50; */
+        /* background-color: #D8B4DD; */
+        background: linear-gradient(135deg, #D8B4DD, #9A6CC7);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-family: 'Sriracha', cursive;
+        z-index: 9999;
+        opacity: 1;
+        transition: opacity 3s ease-out;
+      }
+
+      #loading h1 {
+        font-size: 2.5em;
+        text-align: center;
+        margin: 20px;
+        animation: fadeIn 2s ease-out;
+      }
+
+      @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 加载页面 -->
+    <div id="loading">
+      <!-- <img src="images/logo.png" alt="Logo"> -->
+      <h1 style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">"Seek the peak, set your aims high; <br>Be patient, let your gradients descend."</h1>
+    </div>
+
+    <!-- 主要内容 -->
+    <div class="cy_box">
+      <div class="cylinder" id="cylinder1"></div>
+      <div class="cylinder" id="cylinder2"></div>
+      <div class="cylinder" id="cylinder3"></div>
+      <div class="cylinder" id="cylinder4"></div>
+      <div class="cylinder" id="cylinder5"></div>
+      <div class="cylinder" id="cylinder6"></div>
+      <div class="cylinder" id="cylinder7"></div>
+      <div class="cylinder" id="cylinder8"></div>
+      <div class="cylinder" id="cylinder9"></div>
+      <div class="cylinder" id="cylinder10"></div>
+      <div class="cylinder" id="cylinder11"></div>
+      <div class="cylinder" id="cylinder12"></div>
+      <div class="cylinder" id="cylinder13"></div>
+      <div class="cylinder" id="cylinder14"></div>
+      <div class="cylinder" id="cylinder15"></div>
+      <div class="cylinder" id="cylinder16"></div>
+      <div class="cylinder" id="cylinder17"></div>
+    </div>
+
+    <!-- 导航栏 -->
+    <div class="nav">
+      <ul>
+        <li class="nav-litem">
+          <a href="https://Ada4321.github.io/" id="father">Home</a>
+        </li>
+        <li class="nav-litem">
+          <a text-decoration: none href="#about" id="father">About</a>
+        </li>
+        <li class="nav-litem">
+          <a href="#publication" id="father">Publication</a>
+        </li>
+        <li class="nav-litem">
+          <a href="#education" id="father">Education</a>
+        </li>
+        <li class="nav-litem">
+          <a href="#experience" id="father">Experience</a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- 其他内容 -->
+    <table id="about" style="width:100%;max-width:1000px;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+      <tbody>
+        <tr style="padding:0px">
+          <td style="padding:0px">
+            <table style="width:100%;border:0px;border-spacing:0px;border-collapse:separate;margin-right:auto;margin-left:auto;">
+              <tbody>
+                <tr style="padding:0px">
+                  <td style="padding:2.5%;width:40%;max-width:40%">
+                    <a href="images/hezhu_square.jpg"><img style="height:80%;max-height:100%;width:90%;max-width:100%;object-fit: cover; border-radius: 0%;" alt="profile photo" src="images/hezhu_square.jpg" class="hoverZoomLink"></a>
+                  </td>
+                  <td style="padding:2.5%;width:63%;vertical-align:middle">
+                    <strong>
+                      <p class="name" style="text-align:center;color:#7c6753;font-family:'Sriracha';text-shadow:1px 1px #888;">
+                        He ZHU | 祝贺
+                      </p>
+                    </strong>
+                    <p class="about">Hi there, thanks for dropping by!</p>
+                    <p class="about">
+                      I'm a senior undergrad in Computer Science at <em>Beijing Normal University</em>, and a research intern at <em>Shanghai AI Laboratory</em>, working with <em>Dr. <a href="https://scholar.google.com/citations?user=lSDISOcAAAAJ&hl=zh-CN">Liang Pan</a></em>.
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 页面加载结束后隐藏loading页面 -->
+    <script>
+      window.onload = function() {
+        setTimeout(function() {
+          document.getElementById("loading").style.opacity = "0";
+          setTimeout(function() {
+            document.getElementById("loading").style.display = "none";
+          }, 1000); // 等待动画结束后再隐藏loading页面
+        }, 3000); // 延迟3秒后过渡
+      }
+    </script>
+  </body>
+</html>
