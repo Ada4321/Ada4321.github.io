@@ -18,157 +18,313 @@
     ></script>
     <script type="text/javascript" src="./js/hidebib.js"></script>
     <script type="text/javascript" src="./js/loadtxt.js"></script>
+    <style>
+      body {
+        margin: 0;
+        background: #f7f4f2;
+        color: #1f2937;
+      }
+
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: rgb(135, 0, 0);
+        border-bottom: none;
+      }
+
+      .preview-nav {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 18px;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Optima Bold";
+        font-size: 20px;
+      }
+
+      .preview-nav img {
+        width: 5%;
+        height: auto;
+      }
+
+      .preview-nav a,
+      .preview-nav a:visited {
+        color: #ffffff;
+      }
+
+      .preview-nav a:hover {
+        color: #ffffff;
+        text-decoration: underline;
+      }
+
+      .preview-nav__separator {
+        color: #ffffff;
+        font-family: "Optima Bold";
+      }
+
+      .content {
+        background: #ffffff;
+        box-shadow: 0 18px 45px rgba(31, 41, 55, 0.08);
+        border: 1px solid #eadfdc;
+        border-radius: 18px;
+      }
+
+      div#container {
+        width: 950px;
+      }
+
+      .hero-preview {
+        display: flex;
+        align-items: center;
+        gap: 42px;
+        padding: 30px 10px 28px;
+        border-bottom: 1px solid #eadfdc;
+      }
+
+      .hero-preview__portrait {
+        position: relative;
+        flex: 0 0 252px;
+        margin: 0;
+        padding: 10px;
+      }
+
+      .hero-preview__portrait::before {
+        position: absolute;
+        inset: 24px 0 0 24px;
+        border: 3px solid rgb(135, 0, 0);
+        border-radius: 22px;
+        content: "";
+      }
+
+      .hero-preview__portrait::after {
+        position: absolute;
+        inset: 0 28px 28px 0;
+        border-radius: 22px;
+        background: #f7e8e6;
+        content: "";
+      }
+
+      .hero-preview__photo {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 232px;
+        height: 232px;
+        object-fit: cover;
+        border: 5px solid #ffffff;
+        border-radius: 20px;
+        box-shadow: 0 12px 28px rgba(143, 29, 29, 0.16);
+      }
+
+      .hero-preview__content {
+        flex: 1;
+        min-width: 0;
+      }
+
+      .hero-preview__name {
+        margin: 0 0 8px;
+        font-size: 42px;
+        line-height: 1.08;
+        color: #1f2937;
+      }
+
+      .hero-preview__role {
+        margin: 0 0 14px;
+        font-family: "Optima Bold";
+        font-size: 23px;
+        color: #39465a;
+      }
+
+      .hero-preview__role span {
+        color: #8f1d1d;
+      }
+
+      .hero-preview__summary {
+        max-width: 620px;
+        margin: 0 0 18px;
+        color: #424b57;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
+      .hero-preview__links {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .hero-preview__links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 36px;
+        padding: 0 12px;
+        border-radius: 18px;
+        background: #f7e8e6;
+        color: #8f1d1d;
+        text-decoration: none;
+      }
+
+      .hero-preview__links a:hover {
+        background: #ead0cc;
+      }
+
+      .hero-preview__links i,
+      .hero-preview__links span {
+        font-size: 19px;
+      }
+
+      .hero-preview__email {
+        gap: 8px;
+      }
+
+      h1[id] {
+        margin-top: 28px;
+        margin-bottom: 12px;
+        color: #1f2937;
+      }
+
+      h1[id]::before {
+        display: inline-block;
+        width: 8px;
+        height: 22px;
+        margin-right: 10px;
+        border-radius: 10px;
+        background: #8f1d1d;
+        content: "";
+        vertical-align: -3px;
+      }
+
+      hr {
+        border-top: 1px solid #eadfdc;
+        background: transparent;
+      }
+
+      table.pub_table {
+        border-spacing: 0 14px;
+      }
+
+      table.pub_table tr {
+        background: #fffdfc;
+        box-shadow: inset 0 0 0 1px #eadfdc;
+      }
+
+      table.pub_table tr.focus {
+        background: #fffbea;
+      }
+
+      td.pub_td1 {
+        border-radius: 10px 0 0 10px;
+      }
+
+      td.pub_td2 {
+        border-radius: 0 10px 10px 0;
+      }
+
+      .box {
+        border-radius: 18px;
+      }
+
+      @media (max-width: 760px) {
+        .preview-nav {
+          flex-wrap: wrap;
+          gap: 12px;
+          justify-content: flex-end;
+          font-size: 18px;
+        }
+
+        .content {
+          width: auto;
+          padding: 22px;
+          margin: 12px;
+        }
+
+        div#container {
+          width: auto;
+        }
+
+        .hero-preview {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 22px;
+          padding-top: 12px;
+        }
+
+        .hero-preview__photo {
+          width: 100%;
+          height: auto;
+          aspect-ratio: 1;
+        }
+
+        .hero-preview__portrait {
+          flex-basis: auto;
+          width: min(100%, 270px);
+          padding: 8px;
+        }
+
+        .hero-preview__name {
+          font-size: 34px;
+        }
+      }
+    </style>
   </head>
 
   <body onload="RefreshFunc()">
     <div class="container_bg navbar">
-      <h2>
-        <img style="width: 5%" src="./about/cmu_logo.svg" />
-        <a href="index.html">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="delimiter">&middot;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <!-- <a href="index.html#biography">Bio</a>&nbsp;&nbsp;<span class="delimiter">&middot;</span>&nbsp;&nbsp; -->
-        <a href="index.html#news">News</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="delimiter">&middot;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="index.html#experience">Experience</a>&nbsp;&nbsp;&nbsp;&nbsp;<span class="delimiter">&middot;</span>&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="index.html#publication">Publication</a><span class="delimiter">
-        <!-- <a href="index.html#talks">Honors & Awards</a> -->
-      </h2>
+      <nav class="preview-nav" aria-label="Main navigation">
+        <img src="./about/cmu_logo.svg" alt="CMU" />
+        <a href="index.html">Home</a>
+        <span class="preview-nav__separator">&middot;</span>
+        <a href="index.html#news">News</a>
+        <span class="preview-nav__separator">&middot;</span>
+        <a href="index.html#experience">Education</a>
+        <span class="preview-nav__separator">&middot;</span>
+        <a href="index.html#publication">Publication</a>
+      </nav>
     </div>
 
     <div class="content">
       <div id="container">
-        <table>
-          <tbody>
-            <tr>
-              <td style="
-              float: left;
-              margin-top: 20px;
-              margin-left: 80px;
-              margin-bottom: 10px;
-            ">
-                <img
-                  id="myPicture"
-                  src="./about/hezhu.jpg"
-                  style="border-radius: 10%;"
-                  width="250px"
-                />
-              </td>
-              <td>
-                <div id="DocInfo" style="margin-top: -40px; margin-left: -80px;">
-                  <div id="intro">
-                    <h1>He ZHU 祝贺</h1>
-                    <!-- <a target='_blank'
-                        href='https://goo.gl/maps/vfTQ6Gbbg3gNvzTZ8'
-                        title='Location'>
-                        <font size="5"><i class='fas
-                            fa-map-marker-alt'></i></font>
-                      </a> -->
-                    <a
-                      style="color: navy; font-size: 24px; font-family: Optima Bold"
-                      href=""
-                      >Master's in Robotics @ <span style="color: rgb(135,0,0);">CMU 27'</a
-                    ><br />
-                    <br />
-                    <a href="mailto: hez2@andrew.cmu.edu">
-                      <span
-                        class="fa fa-envelope"
-                        style="color: black; font-size: 16px"
-                      >
-                        <span style="font-family: Optima"
-                          >hez2</span
-                        >
-                        <span
-                          style="color: black; font-size: 16px"
-                          ><span style="font-family: Optima">
-                            [AT] andrew [DOT] cmu [DOT] edu</span
-                          ></span
-                        ></span
-                      ></a
-                    ><br />
-                  </div>
-
-                  <ul class="icon-list">
-                    <a style="color: black" href="">
-                      <span class="ai ai-cv fa-xl"></span>
-                    </a>
-
-                    <a
-                      style="color: black"
-                      href="https://scholar.google.com/citations?hl=zh-CN&user=rI0fhugAAAAJ"
-                    >
-                      <span class="ai ai-google-scholar fa-xl"></span>
-                    </a>
-
-                    <a
-                      style="color: black"
-                      href="https://github.com/Ada4321"
-                    >
-                      <span class="fa-brands fa-github fa-xl"></span>
-                    </a>
-
-                    <!-- <a
-                      style="color: black"
-                      href="https://huggingface.co/Yuliang"
-                    >
-                      <img
-                        id="huggingface"
-                        src="./about/huggingface.svg"
-                        width="25px"
-                      />
-                    </a> -->
-
-                    <!-- <a
-                      style="color: black"
-                      href="https://www.researchgate.net/profile/Yuliang-Xiu"
-                    >
-                      <span class="ai ai-researchgate fa-xl"></span>
-                    </a> -->
-                    <!-- <span style="color: gray; font-weight: normal">|</span> -->
-                    <!-- <a
-                      style="color: black"
-                      href="https://www.linkedin.com/in/yuliangxiu"
-                    >
-                      <span class="fa fa-linkedin fa-xl"></span>
-                    </a> -->
-
-                    <!-- <a
-                      style="color: black"
-                      href="https://twitter.com/yuliangxiu"
-                    >
-                      <span class="fa-brands fa-twitter fa-xl"></span>
-                    </a> -->
-
-                    <!-- <a
-                      style="color: black"
-                      href="https://www.facebook.com/xiuyuliang1993"
-                    >
-                      <span class="fa fa-facebook fa-xl"></span>
-                    </a> -->
-
-                    <!-- <a
-                      style="color: black"
-                      href="https://www.zhihu.com/people/yuliangxiu"
-                    >
-                      <span class="fa-brands fa-zhihu fa-xl"></span>
-                    </a>
-
-                    <a
-                      style="color: black"
-                      href="https://www.youtube.com/channel/UCicL0Co86tGbzoV2heWiEaA"
-                    >
-                      <span class="fa-brands fa-youtube fa-xl"></span>
-                    </a>
-
-                    <a
-                      style="color: black"
-                      href="https://space.bilibili.com/86857008"
-                    >
-                      <span class="fa-brands fa-bilibili fa-xl"></span>
-                    </a> -->
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <section class="hero-preview">
+          <figure class="hero-preview__portrait">
+            <img
+              class="hero-preview__photo"
+              id="myPicture"
+              src="./about/hezhu.jpg"
+              alt="He Zhu"
+            />
+          </figure>
+          <div class="hero-preview__content">
+            <h1 class="hero-preview__name">He ZHU</h1>
+            <p class="hero-preview__role">Master's in Robotics @ <span>CMU 27'</span></p>
+            <p class="hero-preview__summary">
+              I work on vision-language-action models,
+              real-to-sim-to-real systems, and robot learning from diverse data sources.
+            </p>
+            <div class="hero-preview__links">
+              <a class="hero-preview__email" href="mailto:hez2@andrew.cmu.edu">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <span>hez2 [AT] andrew [DOT] cmu [DOT] edu</span>
+              </a>
+              <a href="" aria-label="CV">
+                <span class="ai ai-cv" aria-hidden="true"></span>
+              </a>
+              <a
+                href="https://scholar.google.com/citations?hl=zh-CN&user=rI0fhugAAAAJ"
+                aria-label="Google Scholar"
+              >
+                <span class="ai ai-google-scholar" aria-hidden="true"></span>
+              </a>
+              <a href="https://github.com/Ada4321" aria-label="GitHub">
+                <span class="fa-brands fa-github" aria-hidden="true"></span>
+              </a>
+            </div>
+          </div>
+        </section>
         <table>
           <tr>
             <td>
@@ -332,15 +488,18 @@
         </h1>
 
         <div style="overflow: auto">
+          <span>
+            [2026/09/04] SkillWeaver is accepted at <strong style="color: brown">CoRL 2026</strong>!
+            <br/></span>
           <!-- <span>
             [2025/08/11] I joined Carnegie Mellon University as a master's student.
             <br/></span> -->
           <span>
             [2025/08/11] I joined Carnegie Mellon University as a master's student!
             <br/></span>
-          <span>
+          <!-- <span>
             [2025/07/01] I graduated from Beijing Normal University! Goodbye BNU :) 🎓🎉
-            <br/></span>
+            <br/></span> -->
           <span style="background-color: lightgoldenrodyellow;">
             [2025/04/04] <a href="https://zju3dv.github.io/murre/">Murre</a> is selected for <strong style="color: rgb(225, 115, 115)">oral presentation</strong>!
             <br/></span>
@@ -468,13 +627,22 @@
         <br />
 
         <table class="pub_table">
-          <!-- Grounded Skill Chains publication commented out. Kept in a template because it contains nested HTML comments. -->
-          <template id="grounded-skills-publication">
-          <tr id="grounded_skills">
+          <tr id="grounded_skills" class="focus">
             <td class="pub_td1">
-              <img src="about/murre.jpg">
-              <iframe
+              <!-- <img src="about/skillweaver.png"> -->
+              <video autoplay muted loop>
+                <source src="about/skillweaver.mp4" type="video/mp4">
+                <!-- Your browser does not support the video tag. -->
+              </video>
+              <!-- <iframe
                 src="https://ghbtns.com/github-btn.html?user=3DTopia&repo=4DNeX&type=star&count=true&v=2&size=small"
+                frameborder="0"
+                scrolling="0"
+                width="200"
+                height="20"
+              ></iframe> -->
+              <iframe
+                src=""
                 frameborder="0"
                 scrolling="0"
                 width="200"
@@ -482,17 +650,33 @@
               ></iframe>
             </td>
             <td class="pub_td2">
-              <b>Grounded Skill Chains Makes Generalizable Robot Manipulation Policies &nbsp;</b
+              <b>SkillWeaver: Scaling up Robot Data in Simulation with VLM-Guided Search over Learned Skills &nbsp;</b
               ><br />
               <br />
               <strong>He Zhu</strong>,
-              Matthew Bronars,
-              Aditya Kumar,
+              Lusen Zhao,
+              Kwan Man Cheng,
               Katerina Fragkiadaki
               <br />
               <div style="margin-top: 10px; margin-bottom: 10px">
-                  <i>Paper under review</i>
+                <i>
+                  Conference on Robot Learning 2026 (<strong
+                    style="color: brown"
+                    >CoRL 2026</strong
+                  >)</i>
               </div>
+
+              <a class="box" href=""
+                ><i class="fas fa-home" aria-hidden="true">&nbsp;</i
+                >Project Page&nbsp;</a
+              >
+              <a class="box" href=""
+                ><i class="fa fa-file-lines" aria-hidden="true">&nbsp;</i>Paper
+              </a>
+              <a class="box" href=""
+                ><i class="fa fa-github" aria-hidden="true">&nbsp;</i
+                >Code&nbsp;</a
+              >
 
               <!-- <a
                 shape="rect"
@@ -502,22 +686,22 @@
                   >&nbsp;</i
                 >Intro&nbsp;</a
               > -->
-              <a class="box" href="https://4dnex.github.io/"
+              <!-- <a class="box" href="https://4dnex.github.io/"
                 ><i class="fas fa-home" aria-hidden="true">&nbsp;</i
                 >Project Page&nbsp;</a
               >
               <a class="box" href="https://arxiv.org/abs/2508.13154"
                 ><i class="fa fa-file-lines" aria-hidden="true">&nbsp;</i>Paper
-              </a>
+              </a> -->
 
               <!-- <a class="box" href="https://youtu.be/4fT5lzcAJqo"
                 ><i class="fa fa-video" aria-hidden="true">&nbsp;</i
                 >Video&nbsp;</a
               > -->
-              <a class="box" href="https://github.com/3DTopia/4DNeX"
+              <!-- <a class="box" href="https://github.com/3DTopia/4DNeX"
                 ><i class="fa fa-github" aria-hidden="true">&nbsp;</i
                 >Code&nbsp;</a
-              >
+              > -->
               <!-- <a
                 shape="rect"
                 href="javascript:togglebib(&#39;chen2024feat2gs&#39;)"
@@ -536,7 +720,43 @@
               ></span>
             </td>
           </tr>
-          </template>
+          <!-- Generative Controllable 3D Particle World Models (hidden)
+          <tr id="particle_world_models">
+            <td class="pub_td1">
+            </td>
+            <td class="pub_td2">
+              <b>Generative Controllable 3D Particle World Models&nbsp;</b>
+              <br />
+              <br />
+              Robert Ren,
+              Matthew Bronars,
+              <strong>He Zhu</strong>,
+              Sergey Zakharov,
+              Pavel Tokmakov,
+              Katerina Fragkiadaki
+              <br />
+              <div style="margin-top: 10px; margin-bottom: 10px">
+                   <i>
+                  Conference on Robot Learning 2026 (<strong
+                    style="color: brown"
+                    >CoRL 2026</strong
+                  >)</i>
+              </div>
+
+              <a class="box" href=""
+                ><i class="fas fa-home" aria-hidden="true">&nbsp;</i
+                >Project Page&nbsp;</a
+              >
+              <a class="box" href=""
+                ><i class="fa fa-file-lines" aria-hidden="true">&nbsp;</i>Paper
+              </a>
+              <a class="box" href=""
+                ><i class="fa fa-github" aria-hidden="true">&nbsp;</i
+                >Code&nbsp;</a
+              >
+            </td>
+          </tr>
+          -->
           <tr id="easy_4d_gen">
             <td class="pub_td1">
               <video autoplay muted loop>
